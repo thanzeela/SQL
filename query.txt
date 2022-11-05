@@ -1,0 +1,43 @@
+create database Cabbookingsystem;
+use Cabbookingsystem;
+create table passenger(
+    pass_id int primary key auto_increment,
+    name varchar(30) not null,
+    user_name varchar(30),
+    email varchar(30),
+    password varchar(30),
+    mobile bigint not null,
+    address varchar(50) not null,
+    dob date not null
+);
+
+create table Cab(
+    Cab_no int primary key unique,
+    Cab_name varchar(20) not null,
+    Cab_description varchar(30) not null,
+    Cab_total_capacity int not null
+);
+
+create table Cab_Booking(
+    Booking_id int primary key,
+    Cab_from varchar(30),
+    Cab_to varchar(20),
+    Booking_date date,
+    Booking_time time,
+    cost int,
+    Booking_no int,
+    constraint FK_schedule_cabid foreign key (Booking_no) references Cab(Cab_no )
+);
+
+
+
+create table Driver(
+    driver_id int primary key auto_increment,
+    name varchar(30) not null,
+    email varchar(30),
+    mobile bigint not null,
+    driver_no int not null,
+    constraint FK_book_cab foreign key (driver_no) references Cab(Cab_no)
+     
+);
+    
